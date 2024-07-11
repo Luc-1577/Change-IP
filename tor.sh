@@ -12,9 +12,6 @@ new_ip(){
     echo "[-] Your new IP: $(get_ip)"
 }
 
-echo "[-] Checking for updates"
-sudo apt update && sudo apt upgrade -y > /dev/null
-
 if which tor; then
     :
 else
@@ -28,7 +25,7 @@ else
     fi
 fi
 
-service start tor
+service tor start
 echo "[-] Set your SOCKS to 127.0.0.1:9050"
 
 echo "[-] Seconds until your ip changes: "
@@ -37,7 +34,7 @@ read second
 if [[ "$second" =~ ^[0-9]+$ ]]; then
     while true; do
         sleep "$second"
-        service reload tor
+        service tor start
     done
 else
     echo "[-] You only numbers are allowed"
