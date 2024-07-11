@@ -5,15 +5,10 @@ get_ip(){
     proxy="socks5://127.0.0.1:9050"
     ip=$(curl -sx "$proxy" "$url")
     if [[ "$ip" =~ ^[0-9].*[0-9]$ && "$ip" =~ [.] ]]; then
-        echo "$ip"
+        echo "[-] Your new IP: $ip"
     else
         :
     fi
-}
-
-new_ip(){
-    service tor reload
-    echo "[-] Your new IP: $(get_ip)"
 }
 
 if which tor > /dev/null 2>&1; then
@@ -38,7 +33,7 @@ read second
 if [[ "$second" =~ ^[0-9]+$ ]]; then
     while true; do
         sleep "$second"
-        new_ip
+        service tor reload
     done
 else
     echo "[-] You only numbers are allowed"
