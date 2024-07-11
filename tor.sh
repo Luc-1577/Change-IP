@@ -12,10 +12,10 @@ new_ip(){
     echo "[-] Your new IP: $(get_ip)"
 }
 
-if which tor; then
+if which tor > /dev/null 2>&1; then
     :
 else
-    echo -e "[-] Tor not found \n[-] Would you like to intall it? (Y/n)"
+    echo -en "[-] Tor not found \n[-] Would you like to intall it? (Y/n)"
     read choice
     if [ "$choice" = "Y" ] || [ "$choice" = "y"] || [ -z "$choice" ]; then
         sudo apt install tor -y
@@ -28,13 +28,13 @@ fi
 service tor start
 echo "[-] Set your SOCKS to 127.0.0.1:9050"
 
-echo "[-] Seconds until your ip changes: "
+echo -n "[-] Seconds until your ip changes: "
 read second
 
 if [[ "$second" =~ ^[0-9]+$ ]]; then
     while true; do
         sleep "$second"
-        service tor start
+        service tor reload
     done
 else
     echo "[-] You only numbers are allowed"
