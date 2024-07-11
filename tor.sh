@@ -7,13 +7,13 @@ get_ip(){
     if [[ "$ip" =~ ^[0-9].*[0-9]$ && "$ip" =~ [.] ]]; then
         echo "[-] Your new IP: $ip"
     else
-        "$ip" > /dev/null
+        :
     fi
 }
 
 new_ip(){
     service tor reload
-    echo " $(get_ip)"
+    get_ip
 }
 
 if which tor > /dev/null 2>&1; then
