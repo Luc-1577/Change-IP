@@ -34,7 +34,7 @@ read second
 if [[ "$second" =~ ^[0-9]+$ ]]; then
     while true; do
         sleep "$second"
-        service tor reload
+        new_ip
     done
 else
     echo "[-] You only numbers are allowed"
