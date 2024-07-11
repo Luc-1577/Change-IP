@@ -7,7 +7,7 @@ get_ip(){
     if [[ "$ip" =~ ^[0-9].*[0-9]$ && "$ip" =~ [.] ]]; then
         echo "[-] Your new IP: $ip"
     else
-        :
+        "$ip" > /dev/null
     fi
 }
 
