@@ -4,7 +4,7 @@ get_ip(){
     url="https://www.myexternalip.com/raw"
     proxy="socks5://127.0.0.1:9050"
     ip=$(curl -sx "$proxy" "$url")
-    if [[ "$ip" =~ ^[0-9]+$ ]]; then
+    if [[ "$ip" =~ [0-9] && "$ip" =~ [.] ]]; then
         echo "$ip"
     else
         :
