@@ -8,7 +8,7 @@ get_ip(){
 }
 
 new_ip(){
-    service tor reload
+    service tor restart
     echo "[-] Your new IP: $(get_ip)"
 }
 
