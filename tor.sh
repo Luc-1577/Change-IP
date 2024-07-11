@@ -11,6 +11,11 @@ get_ip(){
     fi
 }
 
+new_ip(){
+    service tor reload
+    echo " $(get_ip)"
+}
+
 if which tor > /dev/null 2>&1; then
     :
 else
@@ -33,7 +38,7 @@ read second
 if [[ "$second" =~ ^[0-9]+$ ]]; then
     while true; do
         sleep "$second"
-        service tor reload
+        new_ip
     done
 else
     echo "[-] You only numbers are allowed"
