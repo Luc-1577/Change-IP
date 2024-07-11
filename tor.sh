@@ -4,11 +4,15 @@ get_ip(){
     url="https://www.myexternalip.com/raw"
     proxy="socks5://127.0.0.1:9050"
     ip=$(curl -sx "$proxy" "$url")
-    echo "$ip"
+    if [[ "$ip" =~ ^[0-9]+$ ]]; then
+        echo "$ip"
+    else
+        :
+    fi
 }
 
 new_ip(){
-    service tor restart
+    service tor reload
     echo "[-] Your new IP: $(get_ip)"
 }
 
