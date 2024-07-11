@@ -3,7 +3,7 @@
 get_ip(){
     url="https://www.myexternalip.com/raw"
     proxy="socks5://127.0.0.1:9050"
-    ip=$(curl -s "$proxy" "$url")
+    ip=$(curl -sx "$proxy" "$url")
     echo "$ip"
 }
 
