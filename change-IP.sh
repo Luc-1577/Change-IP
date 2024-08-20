@@ -1,7 +1,7 @@
 #!bin/bash
 
 get_ip(){
-    url="https://www.myexternalip.com/raw"
+    url="https://api.ipify.org"
     proxy="socks5://127.0.0.1:9050"
     ip=$(curl -sx "$proxy" "$url")
     if [[ "$ip" =~ ^[0-9].*[0-9]$ && "$ip" =~ [.] ]]; then
@@ -41,6 +41,6 @@ if [[ "$second" =~ ^[0-9]+$ ]]; then
         new_ip
     done
 else
-    echo "[-] You only numbers are allowed"
+    echo "[-] Only numbers are allowed"
     exit
 fi
